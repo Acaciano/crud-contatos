@@ -1,6 +1,8 @@
 # Sistema de Cadastro de Contatos Virtual
 Sistema de controle de contatos - para meus alunos do canal ProgramadorTech no Youtube
 
+Código para funcionar a paginação e a tradução dos componentes de busca
+
 <pre>
   
     $('#table-contatos').DataTable({
