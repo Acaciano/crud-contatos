@@ -1,16 +1,17 @@
 ﻿@using ControleDeContatos.Enums
 @model UsuarioModel
 @{
-    ViewData["Title"] = "Criar usuário";
+    ViewData["Title"] = "Editar usuário";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Cadastrar usuário</h1>
+    <h1 class="display-4">Editar usuário</h1>
 </div>
 
 
-<form asp-controller="Usuario" asp-action="Criar" method="post">
+<form asp-controller="Usuario" asp-action="Editar" method="post">
 
+    <input type="hidden" asp-for="Id" />
     <div class="form-group">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" placeholder="Digite o nome do usuário">
@@ -36,16 +37,10 @@
             <option value="@PerfilEnum.Admin" >Administrador</option>
             <option value="@PerfilEnum.Padrao" >Padrão</option>
         </select>
-        @Html.ValidationMessageFor(x => x.Perfil)
+         @Html.ValidationMessageFor(x => x.Perfil)
     </div>
 
-    <div class="form-group">
-        <label for="nome" class="form-label">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" placeholder="Digite a senha do usuário">
-        @Html.ValidationMessageFor(x => x.Senha)
-    </div>
-
-    <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
+    <button type="submit" class="btn btn-primary btn-block">Editar</button>
     <a class="btn btn-secondary btn-block" asp-action="Index" asp-controller="Usuario" role="button">Voltar</a>
 
 </form>
