@@ -34,6 +34,7 @@ namespace ControleDeContatos
             services.AddScoped<IContatoRepositorio, ContatoRepositorio>();
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<ISessao, Sessao>();
+            services.AddScoped<IEmail, Email>();
 
             services.AddSession(o =>
             {
