@@ -40,6 +40,7 @@ namespace ControleDeContatos.Controllers
             UsuarioModel usuario = _usuarioRepositorio.BuscarPorID(id);
             return View(usuario);
         }
+        
         public IActionResult Apagar(int id)
         {
             try
