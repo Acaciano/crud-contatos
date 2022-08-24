@@ -11,10 +11,13 @@ namespace ControleDeContatos.Controllers
     public class UsuarioController : Controller
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly IContatoRepositorio _contatoRepositorio;
 
-        public UsuarioController(IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioController(IUsuarioRepositorio usuarioRepositorio,
+                                 IContatoRepositorio contatoRepositorio)
         {
             _usuarioRepositorio = usuarioRepositorio;
+            _contatoRepositorio = contatoRepositorio;
         }
 
         public IActionResult Index()
@@ -40,6 +43,7 @@ namespace ControleDeContatos.Controllers
             UsuarioModel usuario = _usuarioRepositorio.BuscarPorID(id);
             return View(usuario);
         }
+
         public IActionResult Apagar(int id)
         {
             try
@@ -54,6 +58,13 @@ namespace ControleDeContatos.Controllers
                 TempData["MensagemErro"] = $"Ops, não conseguimos apagar seu usuário, tente novamante, detalhe do erro: {erro.Message}";
                 return RedirectToAction("Index");
             }
+        }
+
+        [HttpGet]
+        public IActionResult ListarContatosPorUsuarioId(int id)
+        {
+            List<ContatoModel> contatos = _contatoRepositorio.BuscarTodos(id);
+            return PartialView("_ContatosUsuario", contatos);
         }
 
         [HttpPost]

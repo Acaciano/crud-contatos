@@ -6,6 +6,27 @@
 $(document).ready(function () {
     getDatatable('#table-contatos');
     getDatatable('#table-usuarios');
+
+    $(".btn-total-contatos").click(function () {
+        var usuarioId = $(this).attr('usuario-id');
+
+        $.ajax({
+            type: "GET",
+            url: '/Usuario/ListarContatosPorUsuarioId/' + usuarioId,
+            cache: false,
+            contentType: "application/json; charset=utf8",
+            success: function (response) {
+                $("#listaContatosUsuario").html(response);
+                $('#modalContatosUsuario').modal();
+                getDatatable('#table-contatos-usuario');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr);
+                console.log(ajaxOptions);
+                console.log(thrownError);
+            }
+        });
+    });
 })
 
 function getDatatable(id) {
@@ -40,6 +61,6 @@ function getDatatable(id) {
 }
 
 
-$('.close-alert').click(function() {
+$('.close-alert').click(function () {
     $(".alert").hide('hide');
 });
